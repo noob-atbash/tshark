@@ -1,12 +1,3 @@
----
-layout: post
-title: T-Shark
-image: img/testimg-cover.jpg
-author: [ERROR]
-date: 2020-05-14T07:03:47.149Z
-tags: []
----
-
 Many of you must have used **Wireshark** it's a packet analyzer used to analyse packets but it is efficient only for small scale analysis when it comes to analyse packets at large scale it becomes difficult to do with Wireshark because it needs lots of plugins as compared to **Tshark**  it is companion utility it uses the same parsing engine which is used by Wireshark  but it is very much powerful. Tshark is command line based tool but great for automation.
 
 Wireshark and Tshark are cross-platform tool already installed in many linux distro but since this tools get updating we also need to update this tool time to time
@@ -16,7 +7,7 @@ Wireshark and Tshark are cross-platform tool already installed in many linux dis
 
 First update your system and check the current version of Tshark and Wireshark in your system.
 
-```
+```bash
 error@error:~$ sudo apt update
 error@error:~$ sudo apt-cache madison wireshark
 
@@ -25,14 +16,14 @@ error@error:~$ sudo apt-cache madison tshark
 
 ```
 You can see the official [website](https://www.wireshark.org/#download)  of Wireshark and see the latest version if it's same as in you machine than okay otherwise update it with  stable version with below command
----
-```
+
+```bash
 error@error:~$ sudo add-apt-repository  ppa:wireshark-dev/stable
 
 ```
 this will add the latest stable repo of wireshark now you just need to update it.
 
-```
+```bash
 error@error:~$ sudo apt install wireshark tshark
 
 ```
@@ -40,20 +31,20 @@ error@error:~$ sudo apt install wireshark tshark
 
 Now everything is installed and updated  we need to do some configuration if your are running your Linux distro on Virtual Box but lets first see the basic coomand of **tshark** to see the interfaces :
 
-```
+```bash
 error@error:~$ tshark -D
 
 ```
 
-![](img/tshark/t1.jpeg)
+![](img/t1.jpeg)
 
 See the number of interfaces will vary and  order get shuffled from device to device because if connect your wireless card some more number of interfaces will be displayed like this.
 
-![](img/tshark/t2.jpeg)
+![](img/t2.jpeg)
 
 **To select any interface you address it with its name or by it's number** if you start tshark by the command
 
-```
+```bash
 error@error:~$ tshark
 
 ```
@@ -62,13 +53,13 @@ error@error:~$ tshark
 
 It will not capture any packets  and if you use this command
 
-```
+```bash
 error@error:~$ sudo tshark
 [sudo] password for error:
 
 ```
 
-after entering password it will show you prompt but still not capture any packets because capturing network traffic as 'root' because and parsing vulnerablity of wireshark or tshark can comprise your system so everytime using 'sudo' is annoying so we need change  setting to use wireshark and tshark comfortably.
+>After entering password it will show you prompt but still not capture any packets because capturing network traffic as 'root' because and parsing vulnerablity of wireshark or tshark can comprise your system so everytime using 'sudo' is annoying so we need change  setting to use wireshark and tshark comfortably.
 
 ```
 error@error:~$ sudo dpkg -reconfigure wireshark-common
@@ -83,7 +74,7 @@ error@error:~$ id
 ```
 >By using id it will dispay all settings but all this configuration will be reflected only when you *restart* your machine or run the below commands after *id* to avoid restarting.
 
-![](img/tshark/t3.jpeg)
+![](img/t3.jpeg)
 
 ---
 
@@ -104,14 +95,14 @@ error@error:~$ ping google.com
 ```
 and in different tab run :
 
-```
+```bash
 error@error:~$ tshark -i any
 
 ```
 
 this will capture packets in *any* mode you can also write any specific mode by it name or number:  
 
-```
+```bash
 error@error:~$ tshark -i  interface_name/ID number
 
 ```
@@ -132,7 +123,7 @@ Let's see about the *modes* in details:
 Above all modes *Promiscuous Mode* can recive all packets but it was way possible in *HUB connections* in morden types of connectoin like *Switch* it's not possible to capture all packets.
 To switch to *Promiscuous Mode* run the below command:
 
-```
+```bash
 error@error:~$ sudo ifconfig interface_name promisc
 
 ```
@@ -185,7 +176,7 @@ Options to **export** packets
 error@error:~$ tshark -T x
 
 ```
-![](img/tshark/t4.jpeg)
+![](img/t4.jpeg)
 
 >You can use any options by using the commands
 
@@ -287,7 +278,7 @@ This commands list all help for statistics
 error@error:~$ tshark -z help
 
 ```
-![](img/tshark/t5.jpeg)
+![](img/t5.jpeg)
 
 and for **protocol hierarchy** we need **io-phs**
 
@@ -322,7 +313,7 @@ error@error:~$ tshark -r file_name.pcap -g -z io.phs,http
 ---
 
 #### To see the endpoints any packet filters
-![](img/tshark/t6.jpeg)
+![](img/t6.jpeg)
 ```
 error@error:~$ tshark -r file_name.pcap -q -z endpoints,name
 
