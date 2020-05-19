@@ -158,6 +158,7 @@ xsltproc /usr/share/wireshark/pdml2html.xsl file_name.xml > file_name.html
 tshark -z help
 
 ```
+![](img/t5.jpeg)
 
 **and for **protocol hierarchy** we need io-phs**
 
@@ -188,6 +189,8 @@ tshark -r file_name.pcap -g -z io.phs,http
 
 ```
 ### To see the endpoints any packet filters
+
+![](img/t6.jpeg)
 
 ```bash
 tshark -r file_name.pcap -q -z endpoints,name
