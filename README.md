@@ -229,3 +229,8 @@ tshark -i interface_name -w file_name.pcap -b filesize:(enter size you want ) -b
 tshark -i wlan0  -w ring.pcap -b filesize:1 -b  files:10
 
 ```
+
+
+FOR INSTALLATION PROCESS AND DETAILED THEORY [click here](https://github.com/noob-atbash/tshark/blob/master/tshark.md)
+
+**AUTHOR** - [ERROR](https://github.com/Error-200)
